@@ -1,0 +1,247 @@
+{
+    "id": "f7192ca8-59db-47a8-aa25-52db35b8416e",
+    "name": "TriageBot YesNoOther",
+    "projectId": "cljx9fp0p0003mi086p13qgof",
+    "hash": "b42b2fc10763a717a55787bf2fd5bd99",
+    "createdAt": "1689462997279",
+    "updatedAt": "1689611601583",
+    "graph": {
+        "id": "demo@0.1.0",
+        "nodes": {
+            "232": {
+                "id": 232,
+                "data": {
+                    "name": "Input - Default",
+                    "text": {
+                        "id": "2eb64348-adee-4118-bcca-19697ca3a16a",
+                        "inputs": {},
+                        "secrets": {},
+                        "projectId": "bb1b3d24-84e0-424e-b4f1-57603f307a89",
+                        "spellName": "Starter",
+                        "publicVariables": "[]"
+                    },
+                    "isInput": true,
+                    "outputs": [],
+                    "success": false,
+                    "inputName": "Default",
+                    "inputType": "Default",
+                    "socketKey": "9d61118c-3c5a-4379-9dae-41965e56207f",
+                    "useDefault": false,
+                    "dataControls": {
+                        "inputType": {
+                            "expanded": true
+                        },
+                        "useDefault": {
+                            "expanded": true
+                        },
+                        "defaultValue": {
+                            "expanded": true
+                        }
+                    },
+                    "defaultValue": "Hello world",
+                    "playtestToggle": {
+                        "outputs": [],
+                        "receivePlaytest": false
+                    }
+                },
+                "inputs": {},
+                "outputs": {
+                    "trigger": {
+                        "connections": [
+                            {
+                                "node": 2623,
+                                "input": "trigger",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "output": {
+                        "connections": [
+                            {
+                                "node": 2623,
+                                "input": "input",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "position": [
+                    -112,
+                    0
+                ],
+                "name": "Input"
+            },
+            "233": {
+                "id": 233,
+                "data": {
+                    "name": "Output",
+                    "success": false,
+                    "isOutput": true,
+                    "socketKey": "0f17a35e-1380-428b-bc87-4a38d207fefc",
+                    "dataControls": {
+                        "name": {
+                            "expanded": true
+                        }
+                    },
+                    "sendToPlaytest": true
+                },
+                "inputs": {
+                    "trigger": {
+                        "connections": [
+                            {
+                                "node": 2623,
+                                "output": "trigger",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "input": {
+                        "connections": [
+                            {
+                                "node": 2623,
+                                "output": "result",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "event": {
+                        "connections": []
+                    }
+                },
+                "outputs": {
+                    "trigger": {
+                        "connections": []
+                    },
+                    "output": {
+                        "connections": []
+                    }
+                },
+                "position": [
+                    560,
+                    0
+                ],
+                "name": "Output"
+            },
+            "2623": {
+                "id": 2623,
+                "data": {
+                    "model": "gpt-3.5-turbo",
+                    "top_k": 50,
+                    "top_p": 1,
+                    "temperature": 0.5,
+                    "stopSequences": "",
+                    "presence_penalty": 0,
+                    "frequency_penalty": 0
+                },
+                "inputs": {
+                    "trigger": {
+                        "connections": [
+                            {
+                                "node": 232,
+                                "output": "trigger",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "system": {
+                        "connections": [
+                            {
+                                "node": 2688,
+                                "output": "output",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "conversation": {
+                        "connections": []
+                    },
+                    "input": {
+                        "connections": [
+                            {
+                                "node": 232,
+                                "output": "output",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "function": {
+                        "connections": []
+                    }
+                },
+                "outputs": {
+                    "trigger": {
+                        "connections": [
+                            {
+                                "node": 233,
+                                "input": "trigger",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "result": {
+                        "connections": [
+                            {
+                                "node": 233,
+                                "input": "input",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "error": {
+                        "connections": []
+                    }
+                },
+                "position": [
+                    240,
+                    0
+                ],
+                "name": "Generate Text"
+            },
+            "2688": {
+                "id": 2688,
+                "data": {
+                    "fewshot": "You are an intelligent AI assistant. Your job is to take an input string and decide how the user was responding to a question. The user is either responding affirmatively (yes), negatively (no), or something else (other). Only respond with a single word, and only one of these three words: yes, no, other. Examples of Yes answers include \"yes\", \"yep\", \"definitely\", \"for sure\", \"alright\", \"yup\". Examples of No answers include \"no\", \"nope\", \"nah\", \"negative\".",
+                    "isPublic": false
+                },
+                "inputs": {},
+                "outputs": {
+                    "output": {
+                        "connections": [
+                            {
+                                "node": 2623,
+                                "input": "system",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "position": [
+                    -112,
+                    160
+                ],
+                "name": "Text Variable"
+            }
+        },
+        "comments": []
+    }
+}

@@ -1,0 +1,317 @@
+{
+    "id": "ed1cee54-4fa1-43d4-9250-f398ebb1b2f0",
+    "name": "TriageBot Rephrase",
+    "projectId": "cljx9fp0p0003mi086p13qgof",
+    "hash": "9c921a835b3e2ab24e69f45dbc7f001a",
+    "createdAt": "1689460078244",
+    "updatedAt": "1689622534194",
+    "graph": {
+        "id": "demo@0.1.0",
+        "nodes": {
+            "232": {
+                "id": 232,
+                "data": {
+                    "name": "Input - Default",
+                    "text": {
+                        "id": "2eb64348-adee-4118-bcca-19697ca3a16a",
+                        "inputs": {},
+                        "secrets": {},
+                        "projectId": "bb1b3d24-84e0-424e-b4f1-57603f307a89",
+                        "spellName": "Starter",
+                        "publicVariables": "[]"
+                    },
+                    "isInput": true,
+                    "outputs": [],
+                    "success": false,
+                    "inputName": "Default",
+                    "inputType": "Default",
+                    "socketKey": "9d61118c-3c5a-4379-9dae-41965e56207f",
+                    "useDefault": false,
+                    "dataControls": {
+                        "inputType": {
+                            "expanded": true
+                        },
+                        "useDefault": {
+                            "expanded": true
+                        },
+                        "defaultValue": {
+                            "expanded": true
+                        }
+                    },
+                    "defaultValue": "Hello world",
+                    "playtestToggle": {
+                        "outputs": [],
+                        "receivePlaytest": false
+                    }
+                },
+                "inputs": {},
+                "outputs": {
+                    "trigger": {
+                        "connections": [
+                            {
+                                "node": 1998,
+                                "input": "trigger",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "output": {
+                        "connections": [
+                            {
+                                "node": 2037,
+                                "input": "input",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "position": [
+                    -240,
+                    -32
+                ],
+                "name": "Input"
+            },
+            "233": {
+                "id": 233,
+                "data": {
+                    "name": "Output",
+                    "success": false,
+                    "isOutput": true,
+                    "socketKey": "0f17a35e-1380-428b-bc87-4a38d207fefc",
+                    "dataControls": {
+                        "name": {
+                            "expanded": true
+                        }
+                    },
+                    "sendToPlaytest": true
+                },
+                "inputs": {
+                    "trigger": {
+                        "connections": [
+                            {
+                                "node": 2037,
+                                "output": "trigger",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "input": {
+                        "connections": [
+                            {
+                                "node": 2037,
+                                "output": "result",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "event": {
+                        "connections": []
+                    }
+                },
+                "outputs": {
+                    "trigger": {
+                        "connections": []
+                    },
+                    "output": {
+                        "connections": []
+                    }
+                },
+                "position": [
+                    736,
+                    -96
+                ],
+                "name": "Output"
+            },
+            "1998": {
+                "id": 1998,
+                "data": {
+                    "inputs": [
+                        {
+                            "name": "Tone",
+                            "taskType": "output",
+                            "socketKey": "Tone",
+                            "socketType": "anySocket",
+                            "connectionType": "input"
+                        }
+                    ],
+                    "fewshot": "You are an artificial assistant whose job it is to take an input string and rephrase it with a similar sentence. Make sure the new sentence conveys the same meaning just using different words. If they asked a question, respond with a question. NEVER ask multiple questions. If they did not ask a question, do not add a question. Word the sentence or question with {{Tone}}. Be concise.",
+                    "success": false
+                },
+                "inputs": {
+                    "Tone": {
+                        "connections": [
+                            {
+                                "node": 2535,
+                                "output": "output",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "trigger": {
+                        "connections": [
+                            {
+                                "node": 232,
+                                "output": "trigger",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "outputs": {
+                    "trigger": {
+                        "connections": [
+                            {
+                                "node": 2037,
+                                "input": "trigger",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "prompt": {
+                        "connections": [
+                            {
+                                "node": 2037,
+                                "input": "system",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "position": [
+                    80,
+                    -96
+                ],
+                "name": "Text Template"
+            },
+            "2037": {
+                "id": 2037,
+                "data": {
+                    "model": "gpt-3.5-turbo",
+                    "top_k": 50,
+                    "top_p": "1",
+                    "temperature": "1",
+                    "stopSequences": "",
+                    "presence_penalty": 0,
+                    "frequency_penalty": 0
+                },
+                "inputs": {
+                    "trigger": {
+                        "connections": [
+                            {
+                                "node": 1998,
+                                "output": "trigger",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "system": {
+                        "connections": [
+                            {
+                                "node": 1998,
+                                "output": "prompt",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "conversation": {
+                        "connections": []
+                    },
+                    "input": {
+                        "connections": [
+                            {
+                                "node": 232,
+                                "output": "output",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "function": {
+                        "connections": []
+                    }
+                },
+                "outputs": {
+                    "trigger": {
+                        "connections": [
+                            {
+                                "node": 233,
+                                "input": "trigger",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "result": {
+                        "connections": [
+                            {
+                                "node": 233,
+                                "input": "input",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    },
+                    "error": {
+                        "connections": []
+                    }
+                },
+                "position": [
+                    384,
+                    -96
+                ],
+                "name": "Generate Text"
+            },
+            "2535": {
+                "id": 2535,
+                "data": {
+                    "_var": "a professional and concerned tone",
+                    "name": "Tone",
+                    "isPublic": false
+                },
+                "inputs": {},
+                "outputs": {
+                    "output": {
+                        "connections": [
+                            {
+                                "node": 1998,
+                                "input": "Tone",
+                                "data": {
+                                    "hello": "hello"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "position": [
+                    -240,
+                    -144
+                ],
+                "name": "String Variable"
+            }
+        },
+        "comments": []
+    }
+}

@@ -1,8 +1,12 @@
-# Magick-Spell-TriageBot
+# Magick Spell: TriageBot
+
+**NOTE: In the current version of Magick, if you import spells with subspells you need to go through each "Spell" node and change the spell its pointing to. Upload all of the spells first, then change the spell they're pointing to (to the same name it currently is). Imported spells point to spell ID's from the project they were exported from, your newly imported spells get a new spell ID.**
+
+The purpose of this bot is to watch a specific Discord Forum channel and gather some additional information from the creator of any bug report thread. Magick doesn't yet have a node for creating GitHub issues, but it will soon be added and this bot will actually create an issue if told to.
 
 Logic flow:
 
-- Get 1 event of type "State"
+- Get 1 event of type "State" - If the sender is not the thread OP, state is set to Resolved (this bot only responds to OP)
   - if none, it is the first message
     - store event "ThreadTitle" with value of the thread title
     - store event "ThreadBody" with the value of the thread body
